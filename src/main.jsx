@@ -27,6 +27,7 @@ import {
   Users,
   LayoutDashboard,
   Keyboard,
+  Target,
 } from "lucide-react";
 import "./styles.css";
 import {
@@ -250,123 +251,197 @@ function App() {
     </Routes>
   );
 }
+
 function Landing() {
+  const highlights = [
+    { icon: BookOpen, title: "Learn", text: "Simple lessons made for students", color: "#dbeafe" },
+    { icon: Trophy, title: "Practise", text: "Fun quizzes and exciting challenges", color: "#fef3c7" },
+    { icon: Star, title: "Grow", text: "Earn XP and build your passport", color: "#fce7f3" },
+  ];
+
   return (
-    <>
-      <header>
-        <Link className="brand" to="/">
-          DSP<span>.</span>
-        </Link>
+    <div className="landing-page">
+      <header className="landing-header">
+        <Link className="brand" to="/">DSP<span>.</span></Link>
         <nav>
-          <a href="#skills">Skills</a>
+          <a href="#skills">Explore skills</a>
           <a href="#how">How it works</a>
-          <Link className="button small" to="/login">
-            Student login
-          </Link>
+          <Link className="button small" to="/login">Student login <ChevronRight /></Link>
         </nav>
       </header>
+
       <main>
-        <section className="hero">
-          <div>
-            <p className="eyebrow">DIGITAL SKILLS PASSPORT</p>
+        <section className="landing-hero">
+          <div className="landing-hero-content">
+            <div className="landing-pill">
+              <span className="landing-pulse" />
+              YOUR DIGITAL JOURNEY STARTS HERE
+            </div>
+
             <h1>
-              Build Your Digital Skills.
+              Don't just use technology.
               <br />
-              <em>Build Your Future.</em>
+              <span>Learn to master it.</span>
             </h1>
-            <p className="lead">
-              Practical computer skills, coding, safety and AI literacy—made for
-              Class 9 and 10 students.
+
+            <p className="landing-description">
+              Discover digital skills, solve fun challenges, explore coding
+              and AI, and get ready for your future — one skill at a time.
             </p>
-            <div className="actions">
-              <Link className="button" to="/login">
-                Start learning <ChevronRight />
+
+            <div className="landing-actions">
+              <Link className="landing-primary-btn" to="/login">
+                Start your journey <ChevronRight size={19} />
               </Link>
-              <a className="button ghost" href="#skills">
+              <a className="landing-secondary-btn" href="#skills">
                 Explore skills
               </a>
             </div>
-            <p className="trust">
-              No public registration · School-managed accounts
-            </p>
+
+            <div className="landing-trust">
+              <ShieldCheck size={17} />
+              <span>Made for Class 9 & 10 · School-managed accounts</span>
+            </div>
           </div>
-          <div className="passport-card">
-            <span className="card-label">YOUR PASSPORT</span>
-            <div className="avatar">AS</div>
-            <h3>Aarav Sharma</h3>
-            <p>Class 9 · Digital Explorer</p>
-            <div className="xp">
-              <b>185</b> XP <span>Level 2</span>
+
+          <div className="landing-visual">
+            <div className="landing-orbit landing-orbit-one" />
+            <div className="landing-orbit landing-orbit-two" />
+
+            <div className="landing-main-card">
+              <div className="landing-card-top">
+                <span>✦ DIGITAL SKILLS PASSPORT</span>
+                <span className="landing-live-dot" />
+              </div>
+
+              <div className="landing-avatar">A</div>
+              <p className="landing-card-small">YOUR JOURNEY, YOUR PROGRESS</p>
+              <h2>Digital Explorer</h2>
+              <p className="landing-card-subtitle">Every skill takes you forward.</p>
+
+              <div className="landing-xp-row">
+                <div>
+                  <span>YOUR XP</span>
+                  <strong>185 XP</strong>
+                </div>
+                <div className="landing-level">LEVEL 02</div>
+              </div>
+
+              <div className="landing-progress">
+                <span />
+              </div>
+
+              <div className="landing-card-bottom">
+                <div><strong>07</strong><span>Skill paths</span></div>
+                <div><strong>05</strong><span>Quiz levels</span></div>
+                <div><strong>∞</strong><span>Possibilities</span></div>
+              </div>
             </div>
-            <div className="mini-progress">
-              <i />
+
+            <div className="landing-float landing-float-top">
+              <span>🏆</span>
+              <div><strong>Keep growing!</strong><small>Every challenge counts</small></div>
             </div>
-            <div className="passport-stats">
-              <span>
-                4 day
-                <br />
-                <b>streak</b>
-              </span>
-              <span>
-                3<br />
-                <b>lessons</b>
-              </span>
-              <span>
-                Top 20
-                <br />
-                <b>rank</b>
-              </span>
+
+            <div className="landing-float landing-float-bottom">
+              <span>⚡</span>
+              <div><strong>Level up</strong><small>Learn something new today</small></div>
             </div>
           </div>
         </section>
-        <section id="skills" className="section">
-          <p className="eyebrow">SIX PRACTICAL PATHS</p>
-          <h2>Skills that go beyond the classroom.</h2>
-          <div className="grid">
-            {modules.map((m) => {
-              let I = m.icon;
+
+        <section className="landing-highlights">
+          {highlights.map((item) => {
+            const Icon = item.icon;
+            return (
+              <article key={item.title}>
+                <div style={{ background: item.color }}><Icon size={24} /></div>
+                <section>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </section>
+              </article>
+            );
+          })}
+        </section>
+
+        <section id="skills" className="landing-skills">
+          <div className="landing-section-heading">
+            <p className="eyebrow">EXPLORE YOUR POTENTIAL</p>
+            <h2>Seven skills. Endless possibilities.</h2>
+            <p>Build useful skills that will help you in school, life and beyond.</p>
+          </div>
+
+          <div className="landing-skill-grid">
+            {modules.map((m, index) => {
+              const Icon = m.icon;
               return (
-                <article className="skill" key={m.id}>
-                  <I color={m.color} />
+                <article className="landing-skill-card" key={m.id}>
+                  <div className="landing-skill-icon" style={{ background: `${m.color}18`, color: m.color }}>
+                    <Icon size={27} />
+                  </div>
+                  <span className="landing-skill-number">SKILL PATH 0{index + 1}</span>
                   <h3>{m.title}</h3>
-                  <p>Five clear lessons and two hands-on challenges.</p>
-                  <span>
-                    Explore <ChevronRight />
-                  </span>
+                  <p>Learn, practise and build confidence with practical activities.</p>
+                  <Link to="/login" className="landing-skill-link">
+                    Start exploring <ChevronRight size={16} />
+                  </Link>
                 </article>
               );
             })}
           </div>
         </section>
-        <section id="how" className="section steps">
-          <p className="eyebrow">HOW DSP WORKS</p>
-          <h2>Learn. Practise. Grow.</h2>
-          <div>
+
+        <section id="how" className="landing-how">
+          <div className="landing-section-heading">
+            <p className="eyebrow">YOUR JOURNEY</p>
+            <h2>Three steps to a brighter future.</h2>
+            <p>Learning should be simple, practical and fun.</p>
+          </div>
+
+          <div className="landing-steps">
             <article>
-              <b>01</b>
-              <h3>Learn simply</h3>
-              <p>Short, friendly lessons explain one useful skill at a time.</p>
+              <span className="landing-step-number">01</span>
+              <div className="landing-step-icon"><BookOpen size={25} /></div>
+              <h3>Discover</h3>
+              <p>Explore useful digital skills through easy-to-understand learning content.</p>
             </article>
             <article>
-              <b>02</b>
-              <h3>Try challenges</h3>
-              <p>Put knowledge into practice on any phone or computer.</p>
+              <span className="landing-step-number">02</span>
+              <div className="landing-step-icon"><Target size={25} /></div>
+              <h3>Take on challenges</h3>
+              <p>Test your knowledge with quizzes and interactive activities.</p>
             </article>
             <article>
-              <b>03</b>
-              <h3>Earn your passport</h3>
-              <p>Build XP, badges and a record of your real progress.</p>
+              <span className="landing-step-number">03</span>
+              <div className="landing-step-icon"><Trophy size={25} /></div>
+              <h3>Show your growth</h3>
+              <p>Track your learning progress and celebrate your achievements.</p>
             </article>
           </div>
         </section>
+
+        <section className="landing-cta">
+          <div>
+            <p>READY TO LEVEL UP?</p>
+            <h2>Your future is full of possibilities.</h2>
+            <span>Start building the skills that will take you further.</span>
+          </div>
+          <Link to="/login" className="landing-cta-btn">
+            Enter DSP <ChevronRight size={19} />
+          </Link>
+        </section>
       </main>
-      <footer>
-        © 2026 Digital Skills Passport · Learn skills. Complete challenges.
-        Build your future.
+
+      <footer className="landing-footer">
+        <Link className="brand" to="/">DSP<span>.</span></Link>
+        <p>Learn Skills. Complete Challenges. Build Your Future.</p>
+        <span>© 2026 Digital Skills Passport</span>
       </footer>
-    </>
+    </div>
   );
 }
+
 function Login() {
   const nav = useNavigate();
   const [id, setId] = useState("");
