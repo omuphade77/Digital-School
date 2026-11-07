@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
+import ChallengeArena from "./components/ChallengeArena";
 import {
   BrowserRouter,
   Link,
@@ -515,7 +516,7 @@ function Student({ user, xp, progress, complete, toast }) {
           path="lesson/:mid/:lid"
           element={<Lesson complete={complete} progress={progress} />}
         />
-        <Route path="challenges" element={<Challenges />} />
+        <Route path="challenges" element={<ChallengeArena />} />
         <Route path="leaderboard" element={<Leaderboard user={user} />} />
         <Route path="passport" element={<Passport user={user} xp={xp} />} />
       </Routes>
